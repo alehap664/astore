@@ -1,0 +1,46 @@
+extends admin
+
+block details
+    form(id='addProduct', action='/admin/products/add', method='POST')
+        label(for='name') Tên sản phẩm
+        br
+        input(type='text', id='name', name='name', placeholder='Tên sản phẩm', required=true)
+        br
+
+        label(for='category') Loại sản phẩm
+        br
+        select(id='category', name='category')
+            each category in categories
+                option(value=category.CategoryID)= category.CategoryName
+        br
+
+        label(for='price') Giá sản phẩm
+        br
+        input(type='text', id='price', name='price', placeholder='0.0', required=true)
+        br
+
+        label(for='unit') Số lượng tồn
+        br
+        input(type='text', id='unit', name='unit', placeholder='99', required=true)
+        br
+
+        label(for='description') Mô tả sản phẩm
+        br
+        textarea(id='description', name='description', required=true) Mô tả sản phẩm
+        br
+
+
+        label(for='image') Hình ảnh sản phẩm
+        input(type='file', id='image', name='image')
+        br
+
+        p
+            b Featured Product
+        label(for='featureYes') Yes
+        input(type='radio', id='featureYes', name='feature', value=1)
+
+        label(for='featureNo') No
+        input(type='radio', id='featureNo', name='feature', value=0)
+        br
+
+        button.btn.btn-default(type='submit') Lưu

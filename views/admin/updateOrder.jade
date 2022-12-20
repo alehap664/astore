@@ -1,0 +1,94 @@
+extends admin
+
+block details
+    .row
+        .col-sm-8
+            h5 Thông tin đơn hàng
+                .table-responsive.cart_info
+                    table.table.table-condensed
+                        thead
+                            tr.cart_menu
+                                td.image
+                                td.description Sản phẩm
+                                td.price Giá
+                                td.quantity Số lượng
+                                td.total Tổng 
+                        tbody
+                            each product in products
+                                -var quantity = product.Quantity;
+                                -var name = product.ProductName;
+                                -var productLink = '/cat/' + product.CategorySlug + '/' + product.ProductSlug;
+                                -var unitPrice = product.ProductPrice;
+                                -var productTotal = product.Total;
+                                tr
+                                    td.cart_product
+                                        a(href=productLink)
+                                            img(src='/img/products/' + product.Image, alt=name)
+                                    td.cart_description
+                                        h4
+                                            a(href=productLink)= name
+                                        p= product.Description
+                                    td.cart_price
+                                        p= unitPrice + ' VND'
+                                    td.cart_quantity
+                                        p=quantity
+                                    td.cart_total
+                                        p.cart_total_price= productTotal  + ' VND'
+        .col-sm-4
+            .table-responsive.cart_info
+                table.table.table-condensed.total-result
+                    thead
+                        tr.cart_menu
+                            td(colspan=2) Địa chỉ giao hàng
+                    tbody
+                        tr
+                            td Tên đầy đủ
+                            td= address.FullName
+                        tr
+                            td Địa chỉ
+                            td= address.StreetAddress
+                        tr
+                            td
+                            td= address.PostCode + ' ' + address.City
+                        tr
+                            td
+                            td= address.Country
+                        tr
+                            td Số điện thoại
+                            td= address.Phone
+
+    .row
+        .col-sm-6
+            h3= 'Cập nhật trạng thái đơn hàng #' + order.OrderID
+            form(id='updateStatus', action='/admin//orders/' + order.OrderID + '/update', method='POST')
+                select(id='status', name='status')
+                    option(value='Order Received', selected) Đơn đã nhận
+                    option(value='Processing') Đang xử lí
+                    option(value='Processed') Chờ giao hàng
+                    option(value='Delivered') Đã giao
+                br
+                button.btn.btn-default(type='submit') Submit
+        .col-sm-6
+            .table-responsive.cart_info
+            table.table.table-condensed.total-result
+                thead
+                    tr.cart_menu
+                        td(colspan=2) Order Summary
+
+                tbody
+                    tr
+                        td Tổng giá trị đơn hàng
+                        td= order.SubTotal  + ' VND'
+                    tr
+                        td Giảm giá
+                        td= order.Discount  + ' VND'
+                    tr.shipping-cost
+                        td Phí giao hàng
+                        if order.ShippingFee == 0
+                            td Miễn phí
+                        else
+                            td= order.ShippingFee  + ' VND'
+                    tr
+                        td Tổng phải trả
+                        td
+                            span=  order.Total  + ' VND'

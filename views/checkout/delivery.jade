@@ -1,0 +1,61 @@
+extends ../layout
+
+block content
+    section#cart_items
+        .container
+            .step-one
+                h2.heading Địa chỉ giao hàng
+            .checkout-options
+                h3
+                    i Địa chỉ giao hàng mặc định bên dưới là đúng ?
+                        | Nếu đúng, thì ấn vào " Giao tới địa chỉ này "
+                        br
+                        | Còn không thì có thể tạo địa chỉ giao hàng mới
+            .row
+                if addresses
+                    each address in addresses
+                        .cus-name.col-sm-4
+                            h4= address.FullName
+                            p
+                                span= address.StreetAddress
+                                br
+                                span= address.PostCode + ' ' + address.City
+                                br
+                                span= address.Country
+                            p= 'Tel: ' + address.Phone
+
+                            form(action='/checkout/delivery/' + address.AddressID, method='POST')
+                                input.dev-btn.btn.btn-default.add-to-cart(type='submit', value='Giao tới địa chỉ này')
+            .step-one#new-address
+                h2.heading Thêm địa chỉ giao hàng mới
+
+            .checkout-options
+                h3
+                    i Chắc chắn click vào "Giao tới địa chỉ này"
+
+            .shopper-informations
+                .row
+                    .bill-to
+                        form(action='/checkout/delivery/new', method='POST')
+                            .col-sm-1.clearfix
+                            .col-sm-5.clearfix
+                                label(for='fullName') Tên đầy đủ
+                                input(type='text', id='fullName', name='fullName')
+                                br
+                                label(for='streetAddress') Địa chỉ giao hàng
+                                input(type='text', name='streetAddress', id='streetAddress')
+                                br
+                                label(for='postcode') Mã bưu chính
+                                input(type='text', name='postcode', id='postcode')
+                                br
+                                label(for='city') Thành phố
+                                input(type='text', name='city', id='city')
+                                br
+                                label(for='country') Quốc gia
+                                input(type='text', name='country', id='country')
+                                br
+                                label(for='phone') Số điện thoại
+                                input(type='tel', name='phone', id='phone')
+                                br
+                                br
+                                input.dev-btn.btn.btn-default.add-to-cart(type='submit', value='Giao tới địa chỉ này')

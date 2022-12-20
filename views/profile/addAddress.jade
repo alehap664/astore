@@ -1,0 +1,24 @@
+extends info
+
+block details
+    form(action='/usr/' + customer.Username + '/addresses/add', method='POST')
+        label(for='fullName') Tên đầy đủ
+        input(type='text', id='fullName', name='fullName', placeholder='Nhập tên đầy đủ')
+        br
+        label(for='address') Đường
+        input(type='text', id='address', name='streetAddress', placeholder='Nhập tên đường')
+        br
+        label(for='postcode') Mã bưu chính
+        input(type='text', id='postcode', name='postcode', placeholder='Nhập mã bưu chính')
+        br
+        label(for='city') Thành phố
+        input(type='text', id='city', name='city', placeholder='Nhập thành phố')
+        br
+        label(for='country') Quốc gia
+        input(type='text', id='country', name='country', placeholder='Nhập quốc gia')
+        br
+        label(for='phone') Số điện thoại
+        input(type='tel', id='phone', name='phone', placeholder='Nhập số điện thoại')
+        br
+        button.btn.btn-default(type='submit')
+            | Thêm

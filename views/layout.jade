@@ -1,0 +1,234 @@
+doctype html
+html
+    head
+        //metadata
+        meta(charset='utf-8')
+        meta(name='viewport', content='width=device-width, initial-scale=1.0')
+        meta(name='description', content='aStore Online')
+        meta(name='author', content='aStore. All rights Reserved')
+        //title
+        title= title + ' | Starbucks'
+        //stylesheet
+        link(rel='stylesheet', href='/css/bootstrap.min.css')
+        link(rel='stylesheet', href='/css/font-awesome.min.css')
+        link(rel='stylesheet', href='/css/main.css')
+        link(rel='stylesheet', href='/css/responsive.css')
+        //favicon
+        link(rel='apple-touch-icon-precomposed', sizes='144x144', href='/img/ico/apple-touch-icon-144-precomposed.png')
+        link(rel='apple-touch-icon-precomposed', sizes='114x114', href='/img/ico/apple-touch-icon-114-precomposed.png')
+        link(rel='apple-touch-icon-precomposed', sizes='72x72', href='/img/ico/apple-touch-icon-72-precomposed.png')
+        link(rel='apple-touch-icon-precomposed', href='/img/ico/apple-touch-icon-57-precomposed.png')
+
+        script(src='/js/fontawesome-free-6.2.1.min.js')
+    body
+        //header
+        header#header
+            //header_top
+            .header_top
+                .container
+                    .row
+                        .col-sm-6
+                            .contactinfo
+                                ul.nav.nav-pills
+                                    li
+                                        a(href='#')
+                                            i.fa.fa-phone
+                                            |  09123456789
+                                    li
+                                        a(href='mailto:www.starbucks.vn')
+                                            i.fa.fa-envelope
+                                            | BeEarning@gmail.com
+                        .col-sm-6
+                            .shop-menu.pull-right
+                                ul.nav.navbar-nav
+                                    -var orderCus = 'Tài khoản'
+                                    -var link = '/sign-in'
+                                    if customer
+                                        -orderCus=customer.FullName
+                                        -link='/usr/'
+                                    li
+                                        a(href=link)
+                                            i.fa.fa-user
+                                            =orderCus
+                                    li
+                                        a(href='/cart')
+                                            i.fa.fa-shopping-cart
+                                            |  Giỏ hàng
+                                    //li
+                                    //    a(href='/checkout')
+                                    //        i.fa.fa-money
+                                    //        |  Checkout
+                                    if customer
+                                        li
+                                            a(href='/sign-out')
+                                                i.fa.fa-sign-out
+                                                |  Đăng xuất
+            ///header_top
+
+            
+
+            //header-bottom
+            .header-bottom
+                .container
+                    .nav
+                        .logo
+                                a(href='/')
+                                    img(src='/img/Beearning.png', alt='ecommerce Logo', style='height: 52px;')
+                                    //h1
+                                        span a
+                                        | Store
+                                        i.fa.fa-shopping-cart
+                            .navbar-header
+                                button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
+                                    span.sr-only Toggle navigation
+                                    span.icon-bar
+                                    span.icon-bar
+                                    span.icon-bar
+                            .mainmenu
+                                ul.nav.navbar-nav.navbar-collapse
+                                    li
+                                        a(class={active: currentUrl === '/'}, href='/')
+                                            i.fa-solid.fa-house.mr-2
+                                            | TRANG CHỦ
+                                    li
+                                        a(class={active: currentUrl === '/cat/all'}, href='/cat/all')
+                                            i.fa-solid.fa-shirt.mr-2
+                                            | SẢN PHẨM QUẦN ÁO
+                                    li.dropdown
+                                        a(class={active: currentUrl === '/services'}, href='/services')
+                                            i.fa-solid.fa-gear.mr-2
+                                            | DỊCH VỤ
+                                            i.fa.fa-angle-down
+                                        ul.sub-menu(role='menu')
+                                            li
+                                                a(href='/services/shipment') Vận chuyển
+                                            li
+                                                a(href='/services/return') Chính sách hoàn trả
+                                            li
+                                                a(href='/services/payment') Thanh toán
+                                            li
+                                                a(href='/services/vouchers') Voucher
+                                    li.dropdown
+                                        a(class={active: currentUrl === '/press'}, href='/press')
+                                            i.fa-solid.fa-user-tie.mr-2
+                                            | VỀ CHÚNG TÔI
+                                            i.fa.fa-angle-down
+                                        ul.sub-menu(role='menu')
+                                            li
+                                                a(href='/press/careers') Cơ hội nghề nghiệp
+                                            li
+                                                a(href='/press/partners') Cộng sự
+                                            li
+                                                a(href='/press/privacy-terms') Điều khoản
+                                            li
+                                                a(href='/press/about-us') Về chúng tôi
+                                    li
+                                        a(class={active: currentUrl === '/contact-us'}, href='/contact-us') 
+                                            i.fa-solid.fa-envelope.mr-2 
+                                            | Liên Hệ
+                        .wraper_search_box
+                            .search_box.pull-right
+                                input(type='text', placeholder='Tìm kiếm')
+            ///header-bottom
+        ///header
+
+        block content
+
+        //Footer
+        footer#footer
+            //.footer-top
+            //    .container
+            //        .row
+            //            .col-sm-3
+            //                .single-promo.promo1
+            //                    i.fa.fa-refresh
+            //                    p 30 Days return
+            //            .col-sm-3
+            //                .single-promo.promo2
+            //                    i.fa.fa-truck
+            //                    p Free shipping
+            //            .col-sm-3
+            //                .single-promo.promo3
+            //                    i.fa.fa-lock
+            //                    p Secure payments
+            //            .col-sm-3
+            //                .single-promo.promo4
+            //                    i.fa.fa-gift
+            //                    p Surprising Gift
+            .footer-widget
+                .container
+                    .row
+                        .col-sm-2
+                            .companyinfo
+                                h2
+                                    span B
+                                    | e Earning Online
+                                p
+                                    | The fashion products at Be Earning are diverse
+                                    | able to serve many costume needs of different ages.
+                                    | No matter what fashion style you are
+                                    | Be Earning can confidently bring fashion products that match your style.
+                        .col-sm-2
+                            .single-widget
+                                h2 MẠNG XÃ HỘI
+                                ul.nav.nav-pills.nav-stacked
+                                    li
+                                        a(href='#')
+                                            i.fa.fa-facebook
+                                            | Facebook
+                                    li
+                                        a(href='#')
+                                            i.fa.fa-twitter
+                                            | Twitter
+                                    li
+                                        a(href='#')
+                                            i.fa.fa-instagram
+                                            | Instagram
+                                    li
+                                        a(href='#')
+                                            i.fa.fa-youtube
+                                            | Youtube
+                        .col-sm-2
+                            .single-widget
+                                h2 VỀ CHÚNG TÔI
+                                ul.nav.nav-pills.nav-stacked
+                                    li
+                                        a(href='/press/careers') Cơ Hội Nghề Nghiệp
+                                    li
+                                        a(href='/press/partners') Cộng Sự
+                                    li
+                                        a(href='/press/privacy') Điều khoản
+                                    li
+                                        a(href='/press/about') Về Chúng Tôi
+                        .col-sm-2
+                            .single-widget
+                                h2 DỊCH VỤ
+                                ul.nav.nav-pills.nav-stacked
+                                    li
+                                        a(href='/services/shipment') Vận Chuyển
+                                    li
+                                        a(href='/services/return') Chính Sách Hoàn Trả
+                                    li
+                                        a(href='/services/payment') Thanh Toán
+                                    li
+                                        a(href='/services/voucher') Voucher
+                        .col-sm-3.col-sm-offset-1
+                            .single-widget
+                                h2 Nhận Thông Tin Quảng Cáo!
+                                form.searchform(action='/subscribe', method='POST')
+                                    input(type='text', name='email', placeholder='email của bạn')
+                                    button.btn.btn-default(type='submit')
+                                        i.fa.fa-arrow-circle-o-right
+                                    p
+                                        | Cập nhật những thông tin mới nhất về Be Earning
+            .footer-bottom
+                .container
+                    .row
+                        p.pull-left &copy 2022 Be Earning Website. All rights reserved.  
+        ///Footer
+        script(src='/js/tailwindcss.js')
+
+        script(src='/js/jquery-2.1.4.min.js')
+        script(src='/js/bootstrap.min.js')
+        script(src='/js/jquery.scrollUp.min.js')
+        script(src='/js/main.js')
