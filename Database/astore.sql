@@ -225,7 +225,7 @@ CREATE TABLE `Subscribers` (
 -- Table structure for table `users`
 --
 
-CREATE TABLE `Users` (
+CREATE TABLE `users` (
   `UserID` int(11) NOT NULL,
   `FullName` varchar(50) NOT NULL,
   `StreetAddress` varchar(255) NOT NULL,
@@ -243,7 +243,7 @@ CREATE TABLE `Users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `Users` (`UserID`, `FullName`, `StreetAddress`, `PostCode`, `City`, `Country`, `Phone`, `Email`, `Username`, `Password`, `Admin`) VALUES
+INSERT INTO `users` (`UserID`, `FullName`, `StreetAddress`, `PostCode`, `City`, `Country`, `Phone`, `Email`, `Username`, `Password`, `Admin`) VALUES
 (1, 'Admin', 'TestStreet', '1234', 'HCM city', 'Vietnam', '09123456789', 'admin@gmail.com', 'admin', '$2a$10$mpJCYlSr762SwQVzdLwxR.KgRuWEHA2NzUanxxG/nxEStDRcRBbB6', 1);
 
 --
@@ -295,7 +295,7 @@ ALTER TABLE `Products`
 --
 -- Indexes for table `users`
 --
-ALTER TABLE `Users`
+ALTER TABLE `users`
   ADD PRIMARY KEY (`UserID`),
   ADD KEY `Username` (`Username`);
 
@@ -336,7 +336,7 @@ ALTER TABLE `Products`
 --
 -- AUTO_INCREMENT for table `users`
 --
-ALTER TABLE `Users`
+ALTER TABLE `users`
   MODIFY `UserID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
@@ -347,7 +347,7 @@ ALTER TABLE `Users`
 -- Constraints for table `addresses`
 --
 ALTER TABLE `Addresses`
-  ADD CONSTRAINT `FK_Users_UserID` FOREIGN KEY (`UserID`) REFERENCES `Users` (`UserID`) ON DELETE CASCADE;
+  ADD CONSTRAINT `FK_Users_UserID` FOREIGN KEY (`UserID`) REFERENCES `users` (`UserID`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `order details`
@@ -360,7 +360,7 @@ ALTER TABLE `Order details`
 -- Constraints for table `orders`
 --
 ALTER TABLE `Orders`
-  ADD CONSTRAINT `FK_Orders_Users` FOREIGN KEY (`UserID`) REFERENCES `Users` (`UserID`) ON DELETE CASCADE;
+  ADD CONSTRAINT `FK_Orders_Users` FOREIGN KEY (`UserID`) REFERENCES `users` (`UserID`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `products`

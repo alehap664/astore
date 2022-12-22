@@ -9,10 +9,15 @@ var mysql = require('mysql');
  * Port number: 3306
  */
 var config = {
-    host: 'sql9.freesqldatabase.com',
-    user: 'sql9584646',
-    password: 'ntlbKxqnXu',
-    database: 'sql9584646'
+    connectionLimit : 1000,
+    connectTimeout  : 60 * 60 * 1000,
+    acquireTimeout  : 60 * 60 * 1000,
+    timeout         : 60 * 60 * 1000,
+
+    host: 'db4free.net',
+    user: 'astore664',
+    password: 'abc!Q2w3e',
+    database: 'astore664'
 };
 
 // init database
